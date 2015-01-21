@@ -7,9 +7,12 @@ jdk:
   - openjdk6
 
 script:
-  - sbt -J-XX:PermSize=256M -J-XX:MaxPermSize=512M -J-Xss1024K -J-Xms512M -J-Xmx1024M -J-XX:+CMSClassUnloadingEnabled -J-XX:+UseCodeCacheFlushing -J-XX:+UseConcMarkSweepGC -J-XX:+CMSIncrementalPacing -J-XX:+DoEscapeAnalysis test
-  - sbt -J-XX:PermSize=256M -J-XX:MaxPermSize=512M -J-Xss1024K -J-Xms512M -J-Xmx1024M -J-XX:+CMSClassUnloadingEnabled -J-XX:+UseCodeCacheFlushing -J-XX:+UseConcMarkSweepGC -J-XX:+CMSIncrementalPacing -J-XX:+DoEscapeAnalysis integrationTestsWithoutOffline
-  - sbt -J-XX:PermSize=256M -J-XX:MaxPermSize=512M -J-Xss1024K -J-Xms512M -J-Xmx1024M -J-XX:+CMSClassUnloadingEnabled -J-XX:+UseCodeCacheFlushing -J-XX:+UseConcMarkSweepGC -J-XX:+CMSIncrementalPacing -J-XX:+DoEscapeAnalysis "project echo-cotests" test
+  - "sbt -J-XX:PermSize=256M -J-XX:MaxPermSize=512M -J-Xss1024K -J-Xms512M -J-Xmx1024M -J-XX:+CMSClassUnloadingEnabled -J-XX:+UseCodeCacheFlushing -J-XX:+UseConcMarkSweepGC -J-XX:+CMSIncrementalPacing -J-XX:+DoEscapeAnalysis $TASKS"
+
+env:
+  - TASKS=test
+  - TASKS=integrationTestsWithoutOffline
+  - TASKS="\"project echo-cotests\" test"
 
 notifications:
   flowdock: 2eb8fdbb08ad2e595a21edea64252a22
