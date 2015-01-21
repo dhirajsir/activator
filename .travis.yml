@@ -1,7 +1,7 @@
 language: scala
 
 scala:
-  - 2.10.5
+  - 2.10.4
 
 jdk:
   - openjdk6
@@ -12,7 +12,7 @@ script:
 env:
   - TASKS=test
   - TASKS=integrationTestsWithoutOffline
-  - TASKS="\"project echo-cotests\" test"
+  - TASKS=echo-cotests/test
 
 notifications:
   flowdock: 2eb8fdbb08ad2e595a21edea64252a22

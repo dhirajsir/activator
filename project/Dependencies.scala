@@ -8,7 +8,7 @@ object Dependencies {
   val sbtPluginVersion = "0.13"
   val sbtPluginScalaVersion = "2.11.5"
   val scalaVersion = "2.11.5"
-  val scala210Version = "2.10.5"
+  val scala210Version = "2.10.4"
   val luceneVersion = "4.2.1"
 
   val templateCacheVersion = "1.0-6830c15252733edf977c869af798d113ad5ac80d"
@@ -164,13 +164,7 @@ object Dependencies {
     resolvers += Classpaths.typesafeSnapshots,
     resolvers += "Typesafe Maven Snapshots" at "http://repo.typesafe.com/typesafe/snapshots/",
     resolvers += "Typesafe Maven Releases" at "http://repo.typesafe.com/typesafe/releases/",
-    libraryDependencies <+= (sbt.Keys.sbtVersion in sbtPlugin, scalaBinaryVersion in update) { (sbtV, scalaV) =>
-      val dependency = sbtV match {
-        case "0.13" => "com.typesafe.play" % "sbt-plugin" % play23Version
-        case _ => sys.error("Unsupported sbt version: " + sbtV)
-      }
-      Defaults.sbtPluginExtra(dependency, sbtV, scalaV)
-    }
+    libraryDependencies += Defaults.sbtPluginExtra("com.typesafe.play" % "sbt-plugin" % play23Version, "0.13", "2.10")
   )
   // *** END SBT-ECHO DEPENDENCIES ***
 
