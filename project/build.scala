@@ -108,7 +108,6 @@ object TheActivatorBuild extends Build {
     settings(PlayKeys.playDefaultPort := 8888)
     settings(Keys.includeFilter in (Assets, LessKeys.less) := "*.less")
     settings(Keys.excludeFilter in (Assets, LessKeys.less) := "_*.less")
-    settings(Keys.initialize ~= { _ => sys.props("scalac.patmat.analysisBudget") = "512" })
     settings(Keys.libraryDependencies ++= Seq(Dependencies.akkaTestkit % "test", Dependencies.specs2 % "test"))
     // set up debug props for forked tests
     settings(configureSbtTest(Keys.test): _*)
