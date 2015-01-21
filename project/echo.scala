@@ -20,7 +20,7 @@ object EchoBuild extends Build {
       Keys.resolvers += typesafeIvyReleases,
       parallelExecution in GlobalScope := false
       )
-      aggregate(trace, collect, collect211, echoCotests, sigarLibs)
+      aggregate(trace, collect, collect211, sigarLibs)
     )
 
   lazy val trace = (
