@@ -39,15 +39,13 @@
         <div class="group">
           <label>
             <input type="checkbox" data-bind="checked: sbt.app.settings.showLogDebug" />
-            Activate debug
+            Show debug
           </label>
           <button data-bind="click: clear">Clear</button>
         </div>
       </div>
-      <div class="logs" data-bind="logScroll: memoLogsScroll">
-        <ul data-bind="foreach: logs, css: { 'show-debug': sbt.app.settings.showLogDebug }">
-          <li data-bind="text: event.entry.message, attr: { 'data-level': event.entry.level, 'data-type': event.entry.type }, click: function(){console.log($data)}"></li>
-        </ul>
+      <div class="logs" data-bind="logScroll: memoLogsScroll, css: { 'show-debug': sbt.app.settings.showLogDebug }">
+        <!-- ko include: ulLog --><!-- /ko -->
       </div>
       <div class="toBottom" data-bind="click: scrollToBottom, css: { hide: memoLogsScroll() == 'stick'}">⤓</div>
     </div>

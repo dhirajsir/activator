@@ -47,17 +47,17 @@ define(function() {
 
   ko.bindingHandlers.include = {
     init: function(elem, valueAccessor) {
+      return { controlsDescendantBindings: true };
     },
     update: function(elem, valueAccessor) {
-      var placeholder = ko.virtualElements.firstChild(elem);
-      if (!placeholder){
-        placeholder = document.createComment("placeholder");
-        elem.parentNode.insertBefore(placeholder, elem.nextSibling);
-      }
       var inc = ko.utils.unwrapObservable(valueAccessor());
-      setTimeout(function(){
-        $(placeholder).replaceWith(inc);
-      },0);
+      if (elem.nextSibling.nodeType !== 8){
+        $(elem.nextSibling).replaceWith(inc)
+      } else if (elem.nextSibling) {
+        elem.parentNode.insertBefore(inc, elem.nextSibling);
+      } else {
+        elem.parentNode.appendChild(inc);
+      }
     }
   }
   ko.virtualElements.allowedBindings.include = true;
@@ -68,7 +68,7 @@ define(function() {
     update: function(elem, valueAccessor) {
       ko.virtualElements.emptyNode(elem);
       if (typeof valueAccessor() === 'string'){
-        elem.parentNode.innerHtml = valueAccessor();
+        elem.parentNode.innerHTML = valueAccessor();
       } else {
         elem.parentNode.insertBefore(valueAccessor(), elem.nextSibling);
       }
@@ -250,7 +250,7 @@ define(function() {
         callback(bufferArray);
         bufferArray = [];
         timer = null;
-      }, 20);
+      }, 50);
     }
   }
 

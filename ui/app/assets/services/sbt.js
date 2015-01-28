@@ -4,7 +4,6 @@
 define([
   './sbt/app',
   './sbt/dependencies',
-  './sbt/logs',
   './sbt/tasks',
   './sbt/events',
   './sbt/configuration',
@@ -12,7 +11,6 @@ define([
 ],function(
   app,
   dependencies,
-  logs,
   tasks,
   events,
   configuration,
@@ -22,7 +20,6 @@ define([
   return {
     app:            app,
     dependencies:   dependencies,
-    logs:           logs,
     tasks:          tasks,
     events:         events,
     configuration:  configuration,
