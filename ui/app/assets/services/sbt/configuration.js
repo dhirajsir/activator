@@ -24,7 +24,6 @@ define([
 
   var addedEchoFile = ko.observable(false);
   var addedBackgroundFile = ko.observable(false);
-  var addedForkInRun = ko.observable(false);
 
   function checkFileContent(path, content, callback, appendTofile){
     return $.ajax({
@@ -51,7 +50,6 @@ define([
     addedBackgroundFile(true);
   });
   checkFileContent(serverAppModel.location+buildFileLocation, uiFileEchoSettings, function() {
-    addedForkInRun(true);
   }, true);
 
   var echoReady = ko.computed(function() {
@@ -81,8 +79,6 @@ define([
   return {
     echoInstalledAndReady: echoInstalledAndReady,
     addedEchoFile:         addedEchoFile,
-    addedBackgroundFile:   addedBackgroundFile,
-    addedForkInRun:        addedForkInRun,
     echoReady:             echoReady
   };
 });
